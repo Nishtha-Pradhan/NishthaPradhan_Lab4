@@ -1,0 +1,33 @@
+#Q7
+#Display the Id and Name of the Product ordered after “2021-10-05”.
+
+#Required Tables:
+SELECT * FROM `order`;
+SELECT * FROM supplier_pricing;
+SELECT * FROM product;
+
+#Conditions on tables:
+#1ST JOIN
+SELECT * FROM `ORDER` AS ORD
+INNER JOIN supplier_pricing AS SP
+ON SP.PRICING_ID = ORD.PRICING_ID;
+#2ND JOIN
+SELECT * FROM `ORDER` AS ORD
+INNER JOIN supplier_pricing AS SP
+ON SP.PRICING_ID = ORD.PRICING_ID
+INNER JOIN product AS PD
+ON PD.PRO_ID = SP.PRO_ID;
+#SUPPLYING THE COLUMN
+SELECT PD.PRO_ID, PD.PRO_NAME FROM `ORDER` AS ORD
+INNER JOIN supplier_pricing AS SP
+ON SP.PRICING_ID = ORD.PRICING_ID
+INNER JOIN product AS PD
+ON PD.PRO_ID = SP.PRO_ID;
+#Applying the condition
+SELECT PD.PRO_ID, PD.PRO_NAME FROM `ORDER` AS ORD
+INNER JOIN supplier_pricing AS SP
+ON SP.PRICING_ID = ORD.PRICING_ID
+INNER JOIN product AS PD
+ON PD.PRO_ID = SP.PRO_ID
+WHERE ORD.ORD_DATE>'2021-10-05';
+
